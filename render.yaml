@@ -1,0 +1,34 @@
+services:
+  - type: web
+    name: mrfi
+    runtime: node
+    plan: free
+    region: singapore
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: SESSION_SECRET
+        generateValue: true
+      - key: ADMIN_EMAIL
+        sync: false
+      - key: ADMIN_PASSWORD
+        sync: false
+      - key: WHATSAPP_NUMBER
+        value: "919864445321"
+      - key: OTP_PROVIDER
+        value: demo
+      - key: KYC_PROVIDER
+        value: demo
+      - key: BASE_URL
+        sync: false
+      - key: DATABASE_URL
+        fromDatabase:
+          name: mrfi-db
+          property: connectionString
+
+databases:
+  - name: mrfi-db
+    plan: free
+    region: singapore
